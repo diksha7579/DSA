@@ -1,0 +1,24 @@
+ //// Search a 2D Matrix ////
+  ////Leetcode Problem:74////
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& mat, int x) {
+        if (mat.empty() || mat[0].empty())
+        return false;
+        int m=mat.size();
+        int n=mat[0].size();
+        int start=0,end=m*n-1,mid,row_index,col_index;
+        while(start<=end){
+            mid=start+(end-start)/2;
+            row_index=mid/n;
+            col_index=mid%n;
+            if(mat[row_index][col_index]==x)
+            return true;
+            else if(mat[row_index][col_index]<x)
+            start=mid+1;
+            else
+            end=mid-1;
+        }
+        return false;
+    }
+};
