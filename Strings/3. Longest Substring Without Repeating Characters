@@ -1,0 +1,22 @@
+// Longest Substring Without Repeating Characters//
+      //Leetcode Problem-03//
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<bool>count(256,false);
+        int first=0,second=0,length=0;
+        while(second<s.size())
+        {
+            while(count[s[second]]==true)  //Repeating values at second
+            {
+                count[s[first]]=false;   //first is moved until second become unique
+                first++;
+            }
+            count[s[second]]=true;
+            length=max(length,second-first+1);
+            second++;
+        }
+        return length;
+    }
+};
